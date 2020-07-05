@@ -1,21 +1,22 @@
-import groovy.json.JsonSlurper
 
-node {
-  stage('init') {
+pipeline {
+    agent any
+    stages {
+        stage('init') {
     checkout scm
   }
-  
-  stage('build') {
-    sh 'mvn clean package'
-  }
-  
-  stage('Test') {
+        stage('Test') {
+            steps {
                 sh 'mvn test'
+            }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
         }
-  
+          stage('build') {
+    sh 'mvn clean package'
+  }
+    }
 }
