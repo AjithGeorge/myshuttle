@@ -1,14 +1,13 @@
-import groovy.json.JsonSlurper
-node {
-  stage('init') {
-    checkout scm
-  }
-  
-  stage('build') {
-    sh 'mvn clean package'
-  }
+pipeline {
+    agent any
 
-  stage('Test') {
+    stages {
+        stage('init') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -18,4 +17,10 @@ node {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                    sh 'mvn clean package'
+            }
+        }
+    }
 }
