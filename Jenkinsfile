@@ -1,11 +1,14 @@
-
-pipeline {
-    agent any
-    stages {
-        stage('init') {
+import groovy.json.JsonSlurper
+node {
+  stage('init') {
     checkout scm
   }
-        stage('Test') {
+  
+  stage('build') {
+    sh 'mvn clean package'
+  }
+
+  stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -15,8 +18,4 @@ pipeline {
                 }
             }
         }
-          stage('build') {
-    sh 'mvn clean package'
-  }
-    }
 }
