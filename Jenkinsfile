@@ -7,7 +7,7 @@ def getFtpPublishProfile(def publishProfilesJson) {
       return [url: p.publishUrl, username: p.userName, password: p.userPWD]
 }
 
-node {
+stages {
   stage('init') {
     checkout scm
   }
@@ -15,6 +15,16 @@ node {
   stage('build') {
     sh 'mvn clean package'
   }
+  stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
   
   stage('deploy') {
     def resourceGroup = 'myShuttleRG2' 
