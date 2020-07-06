@@ -15,7 +15,7 @@ node {
   stage('build') {
     sh 'mvn clean package'
   }
-  stage('Test') {
+  stage('test') {
       sh 'mvn test'
       junit 'target/surefire-reports/*.xml'
   }
