@@ -16,11 +16,9 @@ node {
     sh 'mvn clean package'
   }
   stage('Test') {
-            
-                sh 'mvn test'
-            
-                    junit 'target/surefire-reports/*.xml'
-        }
+      sh 'mvn test'
+      junit 'target/surefire-reports/*.xml'
+  }
   
   stage('deploy') {
     def resourceGroup = 'myShuttleRG2' 
