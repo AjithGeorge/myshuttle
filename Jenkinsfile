@@ -7,7 +7,7 @@ def getFtpPublishProfile(def publishProfilesJson) {
       return [url: p.publishUrl, username: p.userName, password: p.userPWD]
 }
 
-stages {
+node {
   stage('init') {
     checkout scm
   }
@@ -16,9 +16,9 @@ stages {
     sh 'mvn clean package'
   }
   stage('Test') {
-            steps {
+            
                 sh 'mvn test'
-            }
+            
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
