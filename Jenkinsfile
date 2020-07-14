@@ -11,21 +11,6 @@ node {
   stage('init') {
     checkout scm
   }
-    // Run terraform init
-  stage('Terraforminit') {
-
-        ansiColor('xterm') {
-          sh 'terraform init'
-      }
-    }
-
-  // Run terraform plan
-  stage('plan') {
-        ansiColor('xterm') {
-          sh 'terraform plan'
-        }
-    }
-
   
   stage('build') {
     sh 'mvn clean package'
