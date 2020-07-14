@@ -12,7 +12,7 @@ node {
     checkout scm
   }
     // Run terraform init
-  stage('init') {
+  stage('Terraforminit') {
     node {
        {
         ansiColor('xterm') {
