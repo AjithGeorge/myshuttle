@@ -13,25 +13,23 @@ node {
   }
     // Run terraform init
   stage('Terraforminit') {
-    node {
+
        {
         ansiColor('xterm') {
           sh 'terraform init'
         }
       }
     }
-  }
+
 
   // Run terraform plan
   stage('plan') {
-    node {
          {
         ansiColor('xterm') {
           sh 'terraform plan'
         }
       }
     }
-  }
 
   
   stage('build') {
