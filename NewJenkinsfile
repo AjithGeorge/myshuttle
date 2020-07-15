@@ -9,8 +9,9 @@ def getFtpPublishProfile(def publishProfilesJson) {
 
 node {
   stage('init') 
-  ansiColor('xterm') {
+ 
     {
+     ansiColor('xterm') {
       checkout scm
     }
   }
@@ -31,14 +32,15 @@ node {
 
   
   stage('build') 
-  ansiColor('xterm') {
     {
+      ansiColor('xterm') {
       sh 'mvn clean package'
     }
    }
    
-  stage('test') ansiColor('xterm') {
+  stage('test') 
   {
+  ansiColor('xterm') {
       sh 'mvn test'
       junit 'target/surefire-reports/*.xml'
   }
