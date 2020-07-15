@@ -8,11 +8,14 @@ def getFtpPublishProfile(def publishProfilesJson) {
 }
 
 node {
-  stage('init') {
-    checkout scm
+  stage('init') 
+  ansiColor('xterm') {
+    {
+      checkout scm
+    }
   }
     // Run terraform init
-  stage('Terraforminit') {
+  stage('TF-init') {
 
         ansiColor('xterm') {
           sh 'terraform init'
@@ -27,12 +30,18 @@ node {
     }
 
   
-  stage('build') {
-    sh 'mvn clean package'
-  }
-  stage('test') {
+  stage('build') 
+  ansiColor('xterm') {
+    {
+      sh 'mvn clean package'
+    }
+   }
+   
+  stage('test') ansiColor('xterm') {
+  {
       sh 'mvn test'
       junit 'target/surefire-reports/*.xml'
+  }
   }
   
   stage('deploy') {
