@@ -19,14 +19,14 @@ node {
   stage('TF-init') {
 
         ansiColor('xterm') {
-          sh 'terraform init /Terraform'
+          sh '/Terraform terraform init '
       }
     }
 
   // Run terraform plan
   stage('plan') {
         ansiColor('xterm') {
-          sh 'terraform plan /Terraform'
+          sh '/Terraform terraform plan '
         }
     }
 
